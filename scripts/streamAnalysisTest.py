@@ -37,7 +37,7 @@ while(1):
     thresh = cv.dilate(thresh, None, iterations=2)
     cnts = cv.findContours(thresh.copy(), cv.RETR_EXTERNAL,
 	    cv.CHAIN_APPROX_SIMPLE)
-    cnts = cnts[0] if imutils.is_cv() else cnts[1]
+    cnts = cnts[0] if imutils.is_cv2() else cnts[1]
  
     # loop over the contours
     for c in cnts:
