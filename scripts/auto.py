@@ -13,7 +13,7 @@ currentScene = ""
 ts = 0
 data = ""
 
-def time():
+def getTime():
     
     while 1:
         #Get time stamp
@@ -27,14 +27,13 @@ def time():
 
 #Load data from scenes.json
 def dataLoad():
-    with open('scenes.json') as f:
+    with open('scripts/scenes.json') as f:
         data = json.load(f)
 
 while 1:
     
     dataLoad()
     shotLength = random.randint(minShotLength,maxShotLength)
-
 
     angles = len(data['shots'])
     angles = angles - 1
