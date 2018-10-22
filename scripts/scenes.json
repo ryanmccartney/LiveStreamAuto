@@ -1,0 +1,67 @@
+{
+    "title": [
+        {
+            "scene": "Title",
+            "description": "Main title scene"
+        }
+    ],
+   
+    "shots": [
+        {
+            "scene": "Camera 1",
+            "view": "Roof Garden & Bird Feeders"
+        },
+        {
+            "scene": "Camera 2",
+            "view": "Patio and Farmbot"
+        },
+        {
+            "scene": "Camera 3",
+            "view": "Back view of IOT lab"
+        },
+        {
+            "scene": "Camera 4",
+            "view": "Front view of IOT lab"
+        },
+        {
+            "scene": "Camera 5",
+            "view": "Bird Feeder Close-up"
+        },
+        {
+            "scene": "Camera 6",
+            "view": "Garden Overview"
+        },
+        {
+            "scene": "Camera 7",
+            "view": "Bird Feeder Closeup"
+        },
+        {
+            "scene": "Camera 8",
+            "view": "Birdbath"
+        },
+        {
+            "scene": "Camera 9",
+            "view": "python"
+        },
+        {
+            "scene": "Camera 10",
+            "view": "Back view of Farmbot"
+        },   
+        {
+            "scene": "Camera 11",
+            "view": "Side view of Farmbot"
+        },
+        {
+            "scene": "Camera 12",
+            "view": "Garden Closeup"
+        },
+        {
+            "scene": "Camera 13",
+            "view": "3D Printer Stream - No.1"
+        },  
+        {
+            "scene": "Camera 14",
+            "view": "3D Printer Stream - No.2"
+        }           
+    ]
+}    
