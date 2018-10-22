@@ -9,59 +9,72 @@
     "shots": [
         {
             "scene": "Camera 1",
-            "view": "Roof Garden & Bird Feeders"
+            "view": "Roof Garden & Bird Feeders",
+            "url": "rtsp://admin:admin1@192.168.0.10/h264_vga.sdp"
         },
         {
             "scene": "Camera 2",
-            "view": "Patio and Farmbot"
+            "view": "Patio and Farmbot",
+            "url": "rtsp://admin:admin1@192.168.0.11/h264_vga.sdp"
         },
         {
             "scene": "Camera 3",
-            "view": "Back view of IOT lab"
+            "view": "Back view of IOT lab",
+            "url": "rtsp://admin:admin1@192.168.0.12/h264_vga.sdp"
         },
         {
             "scene": "Camera 4",
-            "view": "Front view of IOT lab"
+            "view": "Front view of IOT lab",
+            "url": "rtsp://admin:admin1@192.168.0.13/h264_vga.sdp"
         },
         {
             "scene": "Camera 5",
-            "view": "Bird Feeder Close-up"
+            "view": "Bird Feeder Close-up",
+            "url": "rtsp://admin:CSBmakerSt4ff!@192.168.0.9:554/MPEG-4/ch1/main/av_stream"
         },
         {
             "scene": "Camera 6",
-            "view": "Garden Overview"
+            "view": "Garden Overview",
+            "url": "rtsp://admin:CSBmakerSt4ff!@192.168.0.9:554/MPEG-4/ch2/main/av_stream"
         },
         {
             "scene": "Camera 7",
-            "view": "Bird Feeder Closeup"
+            "view": "Bird Feeder Closeup",
+            "url": "rtsp://admin:CSBmakerSt4ff!@192.168.0.9:554/MPEG-4/ch3/main/av_stream"
         },
         {
             "scene": "Camera 8",
-            "view": "Birdbath"
+            "view": "Birdbath",
+            "url": "rtsp://admin:CSBmakerSt4ff!@192.168.0.9:554/MPEG-4/ch4/main/av_stream"
         },
         {
             "scene": "Camera 9",
-            "view": "python"
+            "view": "python",
+            "url": "rtsp://admin:CSBmakerSt4ff!@192.168.0.9:554/MPEG-4/ch5/main/av_stream"
         },
         {
             "scene": "Camera 10",
-            "view": "Back view of Farmbot"
+            "view": "Back view of Farmbot",
+            "url": "rtsp://admin:CSBmakerSt4ff!@192.168.0.9:554/MPEG-4/ch6/main/av_stream"
         },   
         {
             "scene": "Camera 11",
-            "view": "Side view of Farmbot"
+            "view": "Side view of Farmbot",
+            "url": "rtsp://admin:CSBmakerSt4ff!@192.168.0.9:554/MPEG-4/ch7/main/av_stream"
         },
         {
             "scene": "Camera 12",
-            "view": "Garden Closeup"
+            "view": "Garden Closeup",
+            "url": "rtsp://admin:CSBmakerSt4ff!@192.168.0.9:554/MPEG-4/ch8/main/av_stream"
         },
         {
             "scene": "Camera 13",
-            "view": "3D Printer Stream - No.1"
+            "view": "3D Printer Stream - No.1",
+            "url": "http://192.168.0.109/webcam/?action=stream"
         },  
         {
             "scene": "Camera 14",
-            "view": "3D Printer Stream - No.2"
+            "view": "http://192.168.0.109/webcam/?action=stream"
         }           
     ]
 }    
