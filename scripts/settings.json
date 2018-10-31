@@ -1,4 +1,4 @@
-{
+{   
     "title": [
         {
             "scene": "Title",
@@ -74,7 +74,15 @@
         },  
         {
             "scene": "Camera 14",
-            "view": "http://192.168.0.109/webcam/?action=stream"
+            "view": "3D Printer Stream - No.2",
+            "url": "http://192.168.0.109/webcam/?action=stream"
         }           
+    ],
+
+    "fileStore": [
+        {
+            "clockFileLocation": "text/time.txt",
+            "bannerTextFileLocation": "text/bannerText.txt"
+        }
     ]
 }    
