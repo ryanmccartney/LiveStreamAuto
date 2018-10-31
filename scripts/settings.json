@@ -82,7 +82,8 @@
     "fileStore": [
         {
             "clockFileLocation": "text/time.txt",
-            "bannerTextFileLocation": "text/bannerText.txt"
+            "bannerTextFileLocation": "text/bannerText.txt",
+            "currentScene": "text/scene.txt"
         }
     ]
 }    

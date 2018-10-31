@@ -63,6 +63,7 @@ class stream:
                 file.write(self.banner_text) 
                 file.close()
 
+                print("TEXT: Text written to stream banner '",self.banner_text,"'")
                 current_text= self.banner_text 
 
     def selectRandomScene (self):
@@ -77,3 +78,12 @@ class stream:
         shotLength = random.randint(self.minShotLength,self.maxShotLength)
 
         return shotLength
+
+    def changeScene (self, scene):
+
+        #Write Selected Scene to .txt file
+        file = open(self.settings["fileStore"][0]["currentScene"],'w') 
+        file.write(scene) 
+        file.close()
+
+        print("SCENE: The Program scene has been changed to '",scene,"'")

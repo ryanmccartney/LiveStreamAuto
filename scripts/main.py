@@ -22,8 +22,13 @@ liveStream.getTime()
 #Start Text Render
 liveStream.textRender()
 
-for i in range (0,1000):
+while 1:   
+   
+    selectedScene = liveStream.selectRandomScene()
 
-    liveStream.banner_text = str(i)
+    liveStream.changeScene(selectedScene)
 
-    time.sleep(1)
+    liveStream.banner_text = selectedScene
+
+    delay = liveStream.selectRandomLength()
+    time.sleep(delay)
