@@ -22,8 +22,6 @@ liveStream.getTime()
 #Start Text Render
 liveStream.textRender()
 
-
-
 for i in range (0,1000):
 
     liveStream.banner_text = str(i)
