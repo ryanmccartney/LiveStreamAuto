@@ -6,6 +6,7 @@
 from stream import stream
 from threading import Thread
 from queue import Queue
+import cv2 as cv
 import json
 import time
 
@@ -22,13 +23,20 @@ liveStream.getTime()
 #Start Text Render
 liveStream.textRender()
 
+#Start programStream
+#liveStream.streamProgram()
+
+
 while 1:   
-   
+    text = "Switching to "
+
     selectedScene = liveStream.selectRandomScene()
 
     liveStream.changeScene(selectedScene)
 
-    liveStream.banner_text = selectedScene
+    text = text + selectedScene
+
+    liveStream.banner_text = text
 
     delay = liveStream.selectRandomLength()
     time.sleep(delay)

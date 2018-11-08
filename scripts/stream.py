@@ -22,6 +22,7 @@ def threaded(fn):
 class stream:
 
     banner_text = "Starting Text"
+    currentScene = "Start Title"
 
     def __init__(self, settings_location, minShotLength, maxShotLength):
 
@@ -65,13 +66,43 @@ class stream:
 
                 print("TEXT: Text written to stream banner '",self.banner_text,"'")
                 current_text= self.banner_text 
+           
+    @threaded
+    def streamProgram (self):
+        
+        stream_url = ""
+
+        while 1:
+            
+            #Search for the URL of that stream
+            for i in self.settings['shots']:
+                if i['scene'] == self.currentScene:
+                    stream_url = i['url']
+
+            print("STREAM: The program scene is ",self.currentScene," and the URL is ",stream_url)
+
+            stream = cv.VideoCapture(stream_url)
+
+            programScene = self.currentScene
+
+            while self.currentScene == programScene:
+
+                ret, frame = stream.read()
+                cv.imshow('Program Output',frame)
+
+                k = cv.waitKey(5) & 0xFF
+
+                if k == 27:
+                    break
+        
+            stream.release()
 
     def selectRandomScene (self):
                
         sceneNumberSelected = random.randint(0,self.NumberOfStreams)
-        currentScene = self.settings["shots"][sceneNumberSelected]["scene"]
-    
-        return currentScene
+        self.currentScene = self.settings["shots"][sceneNumberSelected]["scene"]
+
+        return self.currentScene
 
     def selectRandomLength (self):
 
