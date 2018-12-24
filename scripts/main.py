@@ -26,9 +26,10 @@ liveStream.textRender()
 #Start programStream
 #liveStream.streamProgram()
 
-
 while 1:   
     text = "Now viewing "
+
+    liveStream.getSunsetSunrise()
 
     selectedScene = liveStream.selectRandomScene()
 

@@ -10,6 +10,8 @@ import time
 import imutils
 import json
 import random
+import datetime
+import requests
 
 #define threading wrapper
 def threaded(fn):
@@ -24,6 +26,8 @@ class stream:
     banner_text = "Starting Text"
     currentScene = "Start Title"
     currentView = "None"
+    sunset = ""
+    sunrise = ""
 
     def __init__(self, settings_location, minShotLength, maxShotLength):
 
@@ -36,6 +40,7 @@ class stream:
 
         self.minShotLength = minShotLength
         self.maxShotLength = maxShotLength
+        
 
     @threaded
     def getTime(self):
@@ -120,3 +125,32 @@ class stream:
         file.close()
 
         print("SCENE: The Program scene has been changed to '",scene,"'")
+
+    def getSunsetSunrise (self):
+
+        #Build URL with info from the settings file
+        url = self.settings["sunsetsunrise"][0]["url"] 
+        long = self.settings["sunsetsunrise"][0]["longitude"] 
+        lat = self.settings["sunsetsunrise"][0]["latitude"] 
+
+        date = datetime.date.today().strftime("%Y-%m-%d")
+        
+        url = url + "json?lat=" + lat  + "&lng=" + long + "&date=" + date
+
+        response = requests.get(url)
+
+        #Write Selected Scene to .json file
+        file = open(self.settings["fileStore"][0]["sunsetsunrise"],'w') 
+        file.write(response.content.decode("utf-8")) 
+        file.close()
+
+        self.sunset = date
+        self.sunset = self.sunset + " " + response.content.decode("utf-8")["results"][0]["sunset"]
+
+        format = ("%m/%d/%Y %I:%M:%S %p")
+        epochDate = int(time.mktime(time.strptime(self.sunset, format)))
+
+        self.sunrise = response.content.decode("utf-8")["results"][0]["sunrise"]
+
+        print("INFO: The Sunset/Sunise API URL is '",url,"'")
+        print("INFO: The Sunrise is at ",self.sunrise," and the Sunset is at ",self.sunset)

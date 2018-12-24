@@ -28,7 +28,16 @@
         {
             "clockFileLocation": "text/time.txt",
             "bannerTextFileLocation": "text/bannerText.txt",
-            "currentScene": "text/scene.txt"
+            "currentScene": "text/scene.txt",
+            "sunsetsunrise": "scripts/sunrise-sunset.json"
+        }
+    ],
+
+    "sunsetsunrise": [
+        {
+            "url": "https://api.sunrise-sunset.org/",
+            "longitude": "-5.899058",
+            "latitude": "54.630033"
         }
     ]
 }    
