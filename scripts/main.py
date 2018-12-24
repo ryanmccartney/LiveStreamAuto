@@ -28,13 +28,13 @@ liveStream.textRender()
 
 
 while 1:   
-    text = "Switching to "
+    text = "Now viewing "
 
     selectedScene = liveStream.selectRandomScene()
 
     liveStream.changeScene(selectedScene)
 
-    text = text + selectedScene
+    text = text + liveStream.currentView
 
     liveStream.banner_text = text
 

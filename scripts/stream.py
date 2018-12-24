@@ -23,6 +23,7 @@ class stream:
 
     banner_text = "Starting Text"
     currentScene = "Start Title"
+    currentView = "None"
 
     def __init__(self, settings_location, minShotLength, maxShotLength):
 
@@ -101,6 +102,7 @@ class stream:
                
         sceneNumberSelected = random.randint(0,self.NumberOfStreams)
         self.currentScene = self.settings["shots"][sceneNumberSelected]["scene"]
+        self.currentView = self.settings["shots"][sceneNumberSelected]["view"]
 
         return self.currentScene
 
