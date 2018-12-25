@@ -30,7 +30,7 @@ liveStream.textRender()
 setScene = False
 setBanner = False
 delay = 10
-text = ["Changing angle in X seconds","Now view A SHOT DESCRIPTION","The Stream ends today at XX:XX:XX PM","The Stream starts at XX:XX:XX PM","Nature Stream of Garden Birds Feeding"]
+text = ["Changing angle in X seconds","Now view A SHOT DESCRIPTION","The Stream ends today at XX:XX:XX PM","The Stream starts at XX:XX:XX PM","Nature Stream of Garden Birds Feeding","It's nightime, we'll be back in the morning"]
 textItems = len(text)
 
 while 1:   
@@ -38,7 +38,7 @@ while 1:
     #Get Sunrise and Sunset Times
     liveStream.getSunsetSunrise()
     text[2] = "The Stream ends today at " + liveStream.sunsetText
-    text[3] = "The Stream starts at " + liveStream.sunriseText
+    text[3] = "Stream returns at " + liveStream.sunriseText
 
     #Set openning text
     textSelected = 4
@@ -50,8 +50,8 @@ while 1:
     liveStream.changeScene(selectedScene)
     time.sleep(delay)
 
-    #If it's past sunsrise
-    while time.time() > liveStream.sunrise:
+    #If it's daytime
+    while (time.time() > liveStream.sunrise) and (time.time() < liveStream.sunset):
         
         if setScene == False:
             setScene = True
@@ -69,7 +69,7 @@ while 1:
         if setBanner == False:
             setBanner = True
             textStart = time.time()
-            textSelected = random.randint(0,(textItems-1))
+            textSelected = random.randint(0,(textItems-2))
             
         if time.time() > (textStart+3):
             setBanner = False
@@ -79,3 +79,26 @@ while 1:
             liveStream.banner_text = text[textSelected]
         
         text[0] = "Changing scene in " + str(int(delay-(time.time()-sceneStart))) + " seconds"
+
+    sunset = liveStream.sunset
+
+    #If it's nighttime
+    while (time.time() > sunset) and (time.time() < liveStream.sunrise) :
+
+        selectedScene = liveStream.startScene
+
+        if liveStream.currentScene != selectedScene:
+            liveStream.changeScene(selectedScene)
+
+        if setBanner == False:
+            setBanner = True
+            textStart = time.time()
+            textSelected = random.randint(3,(textItems-1))
+            
+        if time.time() > (textStart+5):
+            setBanner = False
+        
+        #If Text has changed rerender
+        if text[textSelected] != liveStream.banner_text:
+            liveStream.banner_text = text[textSelected]
+        
