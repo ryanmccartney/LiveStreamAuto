@@ -71,7 +71,7 @@ while 1:
             textStart = time.time()
             textSelected = random.randint(0,(textItems-1))
             
-        if time.time() > (textStart+2):
+        if time.time() > (textStart+3):
             setBanner = False
         
         #If Text has changed rerender
