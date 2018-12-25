@@ -80,10 +80,12 @@ while 1:
         
         text[0] = "Changing scene in " + str(int(delay-(time.time()-sceneStart))) + " seconds"
 
-    sunset = liveStream.sunset
+    #Define when sunset is and how long night will be
+    sunsetTime = liveStream.sunset
+    sunriseTime = time.time() + liveStream.nightLength
 
     #If it's nighttime
-    while (time.time() > sunset) and (time.time() < liveStream.sunrise) :
+    while (time.time() > sunsetTime) and (time.time() < sunriseTime) :
 
         selectedScene = liveStream.startScene
 

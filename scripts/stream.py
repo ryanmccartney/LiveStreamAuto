@@ -26,6 +26,7 @@ class stream:
     banner_text = "Starting Text"
     currentScene = "Start Title"
     currentView = "None"
+    nightLength = ""
     sunset = ""
     sunrise = ""
     sunsetText = ""
@@ -44,7 +45,11 @@ class stream:
         self.maxShotLength = maxShotLength
 
         self.startScene = self.settings["title"][0]["scene"]
-        
+
+    def getSeconds(self,time_str):
+        h, m, s = time_str.split(':')
+
+        return int(h) * 3600 + int(m) * 60 + int(s)
 
     @threaded
     def getTime(self):
@@ -154,6 +159,7 @@ class stream:
 
         self.sunset = date + " " + data["results"]["sunset"] 
         self.sunrise = date + " " + data["results"]["sunrise"]
+        self.nightLength = data["results"]["day_length"]
 
         self.sunsetText = data["results"]["sunset"] 
         self.sunriseText = data["results"]["sunrise"]
@@ -161,3 +167,6 @@ class stream:
         format = ("%Y-%m-%d %I:%M:%S %p")
         self.sunset = int(time.mktime(time.strptime(self.sunset, format)))
         self.sunrise = int(time.mktime(time.strptime(self.sunrise, format)))
+
+        self.nightLength = self.getSeconds(self.nightLength)
+        self.nightLength = self.getSeconds("24:00:00") - self.nightLength 
