@@ -25,7 +25,6 @@ def threaded(fn):
 class stream:
 
     banner_text = "Starting Text"
-    currentScene = "Shot 1"
     currentView = "None"
     nightLength = ""
     sunset = ""
@@ -47,6 +46,7 @@ class stream:
         self.maxShotLength = maxShotLength
 
         self.startScene = self.settings["title"][0]["scene"]
+        self.currentScene = self.startScene
 
     def getSeconds(self,time_str):
         h, m, s = time_str.split(':')
@@ -90,21 +90,24 @@ class stream:
         stream_url = ""
 
         while 1:
-
+            
+            programScene = self.currentScene
             shots = len(self.settings['shots'])
-           
+
             #Search for the URL of that stream
             for i in range(shots):
 
-                if self.settings['shots'][i]['scene'] == self.currentScene:
+                if self.settings['shots'][i]['scene'] == programScene:
                     stream_url = self.settings['shots'][i]['url']
-                    print("STREAM: The program scene is ",self.currentScene," and the URL is ",stream_url)
+                    print("STREAM: The program scene is ",programScene," and the URL is ",stream_url)
+                    break
+                else:
+                    stream_url = ""
                     
             if stream_url != "":
                 
                 stream = cv.VideoCapture(stream_url)
-                programScene = self.currentScene
- 
+             
                 # initialize the first frame in the video stream
                 firstFrame = None
 

@@ -44,7 +44,7 @@ while 1:
     #Set openning text
     textSelected = 4
     liveStream.banner_text = text[textSelected]
-    time.sleep(0.5)
+    time.sleep(5)
 
     #Stream starts on the title
     selectedScene = liveStream.startScene
