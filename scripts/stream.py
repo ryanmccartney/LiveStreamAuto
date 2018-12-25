@@ -28,6 +28,8 @@ class stream:
     currentView = "None"
     sunset = ""
     sunrise = ""
+    sunsetText = ""
+    sunriseText = ""
 
     def __init__(self, settings_location, minShotLength, maxShotLength):
 
@@ -40,6 +42,8 @@ class stream:
 
         self.minShotLength = minShotLength
         self.maxShotLength = maxShotLength
+
+        self.startScene = self.settings["title"][0]["scene"]
         
 
     @threaded
@@ -138,19 +142,22 @@ class stream:
         url = url + "json?lat=" + lat  + "&lng=" + long + "&date=" + date
 
         response = requests.get(url)
+        data = response.json()
+
+        #Display Response Sunrise and Sunset Time
+        print("INFO: The Sunrise is at",data["results"]["sunrise"],"and the Sunset is at",data["results"]["sunset"])
 
         #Write Selected Scene to .json file
         file = open(self.settings["fileStore"][0]["sunsetsunrise"],'w') 
         file.write(response.content.decode("utf-8")) 
         file.close()
 
-        self.sunset = date
-        self.sunset = self.sunset + " " + response.content.decode("utf-8")["results"][0]["sunset"]
+        self.sunset = date + " " + data["results"]["sunset"] 
+        self.sunrise = date + " " + data["results"]["sunrise"]
 
-        format = ("%m/%d/%Y %I:%M:%S %p")
-        epochDate = int(time.mktime(time.strptime(self.sunset, format)))
+        self.sunsetText = data["results"]["sunset"] 
+        self.sunriseText = data["results"]["sunrise"]
 
-        self.sunrise = response.content.decode("utf-8")["results"][0]["sunrise"]
-
-        print("INFO: The Sunset/Sunise API URL is '",url,"'")
-        print("INFO: The Sunrise is at ",self.sunrise," and the Sunset is at ",self.sunset)
+        format = ("%Y-%m-%d %I:%M:%S %p")
+        self.sunset = int(time.mktime(time.strptime(self.sunset, format)))
+        self.sunrise = int(time.mktime(time.strptime(self.sunrise, format)))
