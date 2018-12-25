@@ -1,4 +1,5 @@
 #NAME:  stream.py
+#DATE:  25/12/2018
 #AUTH:  Ryan McCartney, EEE Undergraduate, Queen's University Belfast
 #DESC:  A python class for aquiring and analysising image data from network streams
 #COPY:  Copyright 2018, All Rights Reserved, Ryan McCartney
@@ -24,13 +25,14 @@ def threaded(fn):
 class stream:
 
     banner_text = "Starting Text"
-    currentScene = "Start Title"
+    currentScene = "Shot 1"
     currentView = "None"
     nightLength = ""
     sunset = ""
     sunrise = ""
     sunsetText = ""
     sunriseText = ""
+    objects = 0
 
     def __init__(self, settings_location, minShotLength, maxShotLength):
 
@@ -88,30 +90,72 @@ class stream:
         stream_url = ""
 
         while 1:
-            
+
+            shots = len(self.settings['shots'])
+           
             #Search for the URL of that stream
-            for i in self.settings['shots']:
-                if i['scene'] == self.currentScene:
-                    stream_url = i['url']
+            for i in range(shots):
 
-            print("STREAM: The program scene is ",self.currentScene," and the URL is ",stream_url)
+                if self.settings['shots'][i]['scene'] == self.currentScene:
+                    stream_url = self.settings['shots'][i]['url']
+                    print("STREAM: The program scene is ",self.currentScene," and the URL is ",stream_url)
+                    
+            if stream_url != "":
+                
+                stream = cv.VideoCapture(stream_url)
+                programScene = self.currentScene
+ 
+                # initialize the first frame in the video stream
+                firstFrame = None
 
-            stream = cv.VideoCapture(stream_url)
+                while self.currentScene == programScene:
 
-            programScene = self.currentScene
+                    ret, frame = stream.read()
+                    self.objects = 0
+                    minArea = 2
 
-            while self.currentScene == programScene:
+                    if frame is not None:
+                        # resize the frame, convert it to grayscale, and blur it
+                        frame = imutils.resize(frame, width=500)
+                        gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+                        gray = cv.GaussianBlur(gray, (21, 21), 0)
 
-                ret, frame = stream.read()
-                cv.imshow('Program Output',frame)
+	                    # if the first frame is None, initialize it
+                        if firstFrame is None:
+                            firstFrame = gray
+                            continue
+                    
+                        # compute the absolute difference between the current frame and first frame
+                        frameDelta = cv.absdiff(firstFrame, gray)
+                        thresh = cv.threshold(frameDelta, 25, 255, cv.THRESH_BINARY)[1]
+ 
+	                    # dilate the thresholded image to fill in holes, then find contours on thresholded image
+                        thresh = cv.dilate(thresh, None, iterations=2)
+                        cnts = cv.findContours(thresh.copy(), cv.RETR_EXTERNAL,cv.CHAIN_APPROX_SIMPLE)
+                        cnts = imutils.grab_contours(cnts)
+ 
+	                    # loop over the contours
+                        for c in cnts:
+		                    # if the contour is too small, ignore it
+                            if cv.contourArea(c) < minArea:
+                                continue
+ 
+		                    # compute the bounding box for the contour, draw it on the frame,
+		                    # and update the qtext
+                            (x, y, w, h) = cv.boundingRect(c)
+                            cv.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+                            self.objects = self.objects + 1
 
-                k = cv.waitKey(5) & 0xFF
+                        cv.imshow('Program Output',frame)
+                        key = cv.waitKey(1) & 0xFF
 
-                if k == 27:
-                    break
-        
-            stream.release()
-
+                        if key == ord("q"):
+                            break
+ 
+                #cleanup the camera and close any open windows
+                stream.release()
+                cv.destroyAllWindows()
+  
     def selectRandomScene (self):
                
         sceneNumberSelected = random.randint(0,self.NumberOfStreams)
@@ -133,6 +177,7 @@ class stream:
         file.write(scene) 
         file.close()
 
+        self.currentScene = scene        
         print("SCENE: The Program scene has been changed to '",scene,"'")
 
     def getSunsetSunrise (self):

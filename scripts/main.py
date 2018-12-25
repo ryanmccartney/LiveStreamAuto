@@ -1,4 +1,5 @@
 #NAME:  main.py
+#DATE:  25/12/2018
 #AUTH:  Ryan McCartney, EEE Undergraduate, Queen's University Belfast
 #DESC:  A python class for aquiring image data from network streams
 #COPY:  Copyright 2018, All Rights Reserved, Ryan McCartney
@@ -25,11 +26,11 @@ liveStream.getTime()
 liveStream.textRender()
 
 #Start programStream
-#liveStream.streamProgram()
+liveStream.streamProgram()
 
 setScene = False
 setBanner = False
-delay = 10
+delay = 120
 text = ["Changing angle in X seconds","Now view A SHOT DESCRIPTION","The Stream ends today at XX:XX:XX PM","The Stream starts at XX:XX:XX PM","Nature Stream of Garden Birds Feeding","For more info about this stream visit www.footering.com","It's nightime, we'll be back in the morning"]
 textItems = len(text)
 
