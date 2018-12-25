@@ -30,7 +30,7 @@ liveStream.textRender()
 setScene = False
 setBanner = False
 delay = 10
-text = ["Changing angle in X seconds","Now view A SHOT DESCRIPTION","The Stream ends today at XX:XX:XX PM","The Stream starts at XX:XX:XX PM","Nature Stream of Garden Birds Feeding","It's nightime, we'll be back in the morning"]
+text = ["Changing angle in X seconds","Now view A SHOT DESCRIPTION","The Stream ends today at XX:XX:XX PM","The Stream starts at XX:XX:XX PM","Nature Stream of Garden Birds Feeding","For more info about this stream visit www.footering.com","It's nightime, we'll be back in the morning"]
 textItems = len(text)
 
 while 1:   
