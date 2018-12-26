@@ -26,11 +26,11 @@ liveStream.getTime()
 liveStream.textRender()
 
 #Start programStream
-liveStream.streamProgram()
+#liveStream.streamProgram()
 
 setScene = False
 setBanner = False
-delay = 120
+delay = 10
 text = ["Changing angle in X seconds","Now view A SHOT DESCRIPTION","The Stream ends today at XX:XX:XX PM","The Stream starts at XX:XX:XX PM","Nature Stream of Garden Birds Feeding","More info about this stream at www.footering.com","It's nightime, we'll be back in the morning"]
 textItems = len(text)
 
@@ -83,7 +83,7 @@ while 1:
 
     #Define when sunset is and how long night will be
     sunsetTime = liveStream.sunset
-    sunriseTime = time.time() + liveStream.nightLength
+    sunriseTime = liveStream.sunset + liveStream.nightLength
 
     #If it's nighttime
     while (time.time() > sunsetTime) and (time.time() < sunriseTime) :
