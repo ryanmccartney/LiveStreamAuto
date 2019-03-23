@@ -1,0 +1,38 @@
+{   
+    "title": [
+        {
+            "scene": "Start Title",
+            "description": "Main title scene"
+        }
+    ],
+   
+    "shots": [
+        {
+            "scene": "Shot 1",
+            "view": "Nest Box",
+            "url": "rtsp://192.168.1.114:554/11"
+        },
+        {
+            "scene": "Start Title",
+            "view": "Title Scene",
+            "url": "rtsp://192.168.1.114:554/11"
+        },
+    ],
+
+    "fileStore": [
+        {
+            "clockFileLocation": "text/time.txt",
+            "bannerTextFileLocation": "text/bannerText.txt",
+            "currentScene": "text/scene.txt",
+            "sunsetsunrise": "scripts/sunrise-sunset.json"
+        }
+    ],
+
+    "sunsetsunrise": [
+        {
+            "url": "https://api.sunrise-sunset.org/",
+            "longitude": "-5.899058",
+            "latitude": "54.630033"
+        }
+    ]
+}    

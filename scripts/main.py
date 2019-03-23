@@ -12,7 +12,7 @@ import json
 import time
 import random
 
-settings_location = "scripts/settings.json"
+settings_location = "streams/nestBoxStream.json"
 minShotLength = 3
 maxShotLength = 15
 
@@ -31,7 +31,7 @@ liveStream.textRender()
 setScene = False
 setBanner = False
 delay = 10
-text = ["Changing angle in X seconds","Now view A SHOT DESCRIPTION","The Stream ends today at XX:XX:XX PM","The Stream starts at XX:XX:XX PM","Nature Stream of Garden Birds Feeding","More info about this stream at www.footering.com","It's nightime, we'll be back in the morning"]
+text = ["Changing scene in X seconds","Now view A SHOT DESCRIPTION","The Stream ends today at XX:XX:XX PM","The Stream starts at XX:XX:XX PM","Nest Box Stream","More info about this stream at www.footering.com","It's nightime, we'll be back in the morning"]
 textItems = len(text)
 
 while 1:   
